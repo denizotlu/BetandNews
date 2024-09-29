@@ -72,7 +72,6 @@
 		B62B15812C9B2A8D005E0BF8 /* BetApp */ = {
 			isa = PBXGroup;
 			children = (
-				B62B15C62CA307E1005E0BF8 /* Model */,
 				B62B15C32CA3071A005E0BF8 /* ApiManager */,
 				B62B15BD2CA058AD005E0BF8 /* MainTabBar */,
 				B62B15BB2CA05871005E0BF8 /* HomePage */,
@@ -82,6 +81,7 @@
 				B62B158B2C9B2A8E005E0BF8 /* Assets.xcassets */,
 				B62B158D2C9B2A8E005E0BF8 /* LaunchScreen.storyboard */,
 				B62B15902C9B2A8E005E0BF8 /* Info.plist */,
+				B62B15C62CA307E1005E0BF8 /* Model */,
 				B62B15C92CA83004005E0BF8 /* BannerDetailView.swift */,
 			);
 			path = BetApp;

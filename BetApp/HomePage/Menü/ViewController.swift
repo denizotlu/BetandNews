@@ -9,25 +9,39 @@ import UIKit
 import SnapKit
 
 class ViewController: UIViewController {
+    
+    var firstbutton = UIButton()
+    var UISecondButton = UIButton()
+    
     var timer: Timer?
     var currentIndex = 0
     
     let api = NewsService()
 
-    let button = UIButton()
     
     var articles : [Article] = []
       
-      var collectionView: UICollectionView!
+    var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        startAutoScroll()
+     //   startAutoScroll()
 
         
         navButton()
         setupCollectionView()
-     
+        firstBut()
+        SecondBut()
+        cons()
+        fetchApi()
+    
+    
+    }
+    
+    
+    
+    
+    func fetchApi(){
         api.fetchNews { result in
                     switch result {
                     case .success(let articles):
@@ -39,9 +53,9 @@ class ViewController: UIViewController {
                         print("Hata: \(error.localizedDescription)")
                     }
                 }
-        
-       
     }
+    
+        
     func startAutoScroll() {
            timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(autoScroll), userInfo: nil, repeats: true)
        }
@@ -56,8 +70,106 @@ class ViewController: UIViewController {
           }
       }
     
+   
+
+   
+    
+    func firstBut(){
+   
+            firstbutton.backgroundColor  = .systemGray
+            firstbutton.setTitle("FirstButton", for: UIControl.State.normal)
+            firstbutton.setTitleColor(.black, for: UIControl.State.normal)
+            firstbutton.tintColor = .black
+            view.addSubview(firstbutton)
+    }
+    
+    func SecondBut(){
+            UISecondButton.backgroundColor  = .systemGray
+            UISecondButton.setTitle("UISecondButton", for: UIControl.State.normal)
+            UISecondButton.setTitleColor(.black, for: UIControl.State.normal)
+            UISecondButton.titleLabel?.textAlignment = .center
+            UISecondButton.tintColor = .black
+            view.addSubview(UISecondButton)
+    }
+    
+    
+      
+  func cons(){
+      firstbutton.snp.makeConstraints { make in
+          make.top.equalTo(collectionView.snp.bottom).offset(20)
+          make.left.equalToSuperview().inset(10)
+          make.right.equalTo(UISecondButton.snp.left).offset(-10)
+          make.width.equalTo(UISecondButton)
+          make.bottom.equalToSuperview().inset(400)
+      }
+      
+      
+      UISecondButton.snp.makeConstraints { make in
+          make.top.equalTo(collectionView.snp.bottom).offset(20)
+          make.left.equalTo(firstbutton.snp.right).offset(10)
+          make.right.equalToSuperview().inset(10)
+          make.width.equalTo(firstbutton)
+          make.bottom.equalToSuperview().inset(400)
+      }
+      
+  }
+    
+/*
+    func TheredBut(){
+        let UITheredButton : UIButton = {
+            let firstbutton = UIButton()
+            firstbutton.backgroundColor  = .brown
+            firstbutton.titleLabel?.text = "FirstButton"
+            view.addSubview(firstbutton)
+            
+            firstbutton.snp.makeConstraints { make in
+                make.top.equalTo(collectionView.snp.bottom).offset(20)
+                make.left.right.equalToSuperview().inset(10)
+                make.bottom.equalToSuperview().inset(400)
+            }
+            
+         
+            
+            return firstbutton
+        }()
         
-        func navButton() {
+    }
+    
+    func fourtBut(){
+        let UIFourtButton : UIButton = {
+            let firstbutton = UIButton()
+            firstbutton.backgroundColor  = .brown
+            firstbutton.titleLabel?.text = "FirstButton"
+            view.addSubview(firstbutton)
+            
+            firstbutton.snp.makeConstraints { make in
+                make.top.equalTo(collectionView.snp.bottom).offset(20)
+                make.left.right.equalToSuperview().inset(10)
+                make.bottom.equalToSuperview().inset(400)
+            }
+            
+         
+            
+            return firstbutton
+        }()
+        
+    }*/
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    func navButton() {
             let ikon = UIImage(named: "betlogo")?.resized(to: CGSize(width: 100, height: 40))
             
             let leftButton = UIButton(type: .custom)
@@ -84,7 +196,6 @@ class ViewController: UIViewController {
 }
 
 
-
 extension UIImage {
     func resized(to targetSize: CGSize) -> UIImage? {
 
@@ -102,6 +213,12 @@ extension UIImage {
         return newImage
     }
 }
+
+
+
+
+
+
 
 
 
